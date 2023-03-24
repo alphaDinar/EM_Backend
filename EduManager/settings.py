@@ -96,7 +96,7 @@ WSGI_APPLICATION = 'EduManager.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.parse('postgres://edumanager_db_user:sV4eyxSbLMHHQXxWzOf2u1bHvUsqczBd@dpg-cgaplk02qv267uddbo70-a.oregon-postgres.render.com/edumanager_db')
+    'default': dj_database_url.parse('postgres://edumanager_db_hueo_user:8iL3Z7r9HVE3Gowb01x09A33VeJ3vXEt@dpg-cgep6s82qv2dpva4erv0-a.oregon-postgres.render.com/edumanager_db_hueo')
 }
 
 # Password validation
