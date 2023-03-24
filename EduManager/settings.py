@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-slyoy3yu^rf1)_ff)5ual4@5pc#2+q40-_&9^0#oqt(j7x@n)u
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://edumanager.onrender.com', "http://localhost:5173"]
+CSRF_TRUSTED_ORIGINS = ['https://edumanager.onrender.com','https://edumanager.onrender.com' , "http://localhost:5173", "https://edumanager-frontend.onrender.com", "http://edumanager-frontend.onrender.com"]
 INTERNAL_IPS = ['127.0.0.1']
 AUTH_USER_MODEL = 'auth_api.User'
 # Application definition
@@ -209,6 +209,8 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = [
     "https://edumanager.onrender.com",
     "http://edumanager.onrender.com",
+    "https://edumanager-frontend.onrender.com"
+    "http://edumanager-frontend.onrender.com"
     "http://localhost:5173",
     "http://127.0.0.1:5173",
 ]
