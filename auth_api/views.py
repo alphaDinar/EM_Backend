@@ -28,8 +28,7 @@ class UserAPI(APIView):
     permission_classes = [AllowAny]
     serializer_class = UserSerializer
     queryset = User.objects.all()
-    @csrf_exempt
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         jwt_token = request.data.get('access_token')
         refresh_token = request.data.get('refresh_token')
         user = User.objects.get(id=get_user(jwt_token).id)
