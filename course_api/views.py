@@ -17,9 +17,11 @@ from django.conf import settings
 class CourseAPI(generics.ListAPIView):
     permission_classes = [AllowAny]
     serializer_class = CourseSerializer
+    queryset = Course.objects.all()
     def post(self,request):
         token = request.data.get('token')
         user = get_user(token)
+        print(user)
         courses = Teacher.objects.get(name=user).course.all()
         user = user.username
         return Response({'user':user ,'courses':courses.values()}) 
