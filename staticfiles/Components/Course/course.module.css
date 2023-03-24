@@ -1,0 +1,117 @@
+.course_box_holder{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.course_box_h{
+  width: 100%;
+  padding: 10px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.course_box_h p{
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.course_box_h div{
+  display: flex;
+  flex-direction: column;
+}
+.course_box_h div span{
+  display: flex;
+  align-items: center;
+}
+.course_box_h form{
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.course_box_h form input{
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+.course_box_h form input::placeholder{
+  text-align: center;
+}
+.course_box_h form button{
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  justify-content: center;
+  background: white;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.course_box{
+  padding: 10px;
+  width: 85%;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap:3%;
+  justify-content: flex-start;
+}
+.course{
+  margin: 10px;
+  width: 19%;
+  background: white;
+  padding: 1%;
+  border-radius: 10px;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  transition: 0.3s ease;
+}
+.course .mid{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.course .mid i{
+  font-size: 3rem;
+  color: #ffd12c;
+  padding: 5px;
+}
+.course .mid p{
+  font-size: 1.3rem;
+  padding: 5px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  transition: 1s ease;
+  font-family: 'Alegreya Sans SC', sans-serif;
+}
+.course .low{
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+}
+.course .low i{
+  color: #202b41;
+  font-size: 2rem;
+  padding: 5px;
+}
+.course .low p{
+  font-weight: 600;
+}
+.course:hover{
+  background: #ffd12c;
+}
+.course:hover i{
+  background: white;
+  border-radius: 5px;
+}
+.course:hover .mid p{
+  transform: translateY(-20px);
+}

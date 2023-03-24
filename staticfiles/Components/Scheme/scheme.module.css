@@ -1,0 +1,119 @@
+.page_box{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.sideBar{
+  background: salmon;
+  background: white;
+  width: 21%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  top: 0;
+  left: 0;
+  position: fixed;
+  overflow-y: auto;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.s_top{
+  min-height: 7vh;
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-size: 1.4rem;
+  width: 80%;
+  max-width: 100%;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px dotted darkgray;
+}
+.s_low{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 90vh;
+  /* border: 2px solid dodgerblue; */
+}
+.slide{
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  min-height: 90vh;
+}
+
+.s_low img{
+  padding: 5px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.s_low .con{
+  cursor: pointer;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  gap: 2rem;
+  display: flex;
+  border-radius: 5px;
+  align-items: center;
+  width: 90%;
+  transition: 0.3s ease;
+}
+.s_low .con:hover{
+  box-shadow: none;
+}
+
+.s_low .con span{
+  font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+.tray{
+  /* background: skyblue; */
+  width: 79%;
+  min-height:100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  /* background: whitesmoke; */
+  /* gap: 2rem; */
+  /* justify-content: center; */
+}
+.tray p{
+  width: 95%;
+  background: white;
+  padding: 10px;
+  /* border: 2px solid gold; */
+}
+.tray_img{
+  width: 100%;
+  height: 94vh;
+  /* min-height: 100vh; */
+  /* max-width: 100vh; */
+}
+.tray_img_con{
+  width: 100%;
+  height: 70vh;
+}
+
+.tray_con_tag{
+  /* position: absolute; */
+  background: white;
+  z-index: 100;
+  width: 100%;
+  text-align: center;
+  /* background: black; */
+  /* background: wheat; */
+  /* color: white; */
+  border-left: 2px dotted darkgray;
+  background: #00acea;
+  color: white;
+  background: black;
+  max-height: 6vh;
+  padding: 5px 0;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+  font-family: 'Bebas Neue', cursive;
+}

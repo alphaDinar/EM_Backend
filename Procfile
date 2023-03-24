@@ -1,0 +1,1 @@
+web: gunicorn EduManager.wsgi --log-file -
