@@ -1,9 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
-import ReactDOM from 'react-dom';
 import { useParams } from 'react-router-dom';
 import styles from './scheme.module.css'
-
+import baseAxios from '../Auth/baseAxios';
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -14,16 +13,14 @@ export default function UseScheme(){
   const [scheme, setScheme] = useState('')
   const [imageBox, setImageBox] = useState([])
 
-
   useEffect(()=>{
-    axios.get(`/use_scheme_api/${slug}`)
-    .then(data => handleData(data.data))
+    baseAxios.get(`use_scheme_api/${slug}`)
+    .then(data => {
+      setScheme(data.data.scheme)
+      setImageBox(data.data.test)
+    })
     .catch(error => console.log(error))
   }, [setImageBox])
-  const handleData =(data)=>{
-    setScheme(data.scheme)
-    setImageBox(data.test)
-  }
 
   const tray = useRef(null)
 

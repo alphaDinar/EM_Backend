@@ -2,6 +2,7 @@ import styles from './main.module.css'
 import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import baseAxios from '../../Auth/baseAxios';
 
 const DashMain =({prop_dash,  prop_main})=>{
   if(prop_dash.sideBar === 0){
@@ -36,7 +37,7 @@ const DashMain =({prop_dash,  prop_main})=>{
   const status = {'all':'all','pending':'pending','active':'active','completed':'completed'}
 
   useEffect(()=>{
-    axios.get(prop_main.url)
+    baseAxios.get(prop_main.url)
     .then(data => handleData(data.data))
     .catch(error => console.log(error))
   }, [setResources])
@@ -94,7 +95,7 @@ const DashMain =({prop_dash,  prop_main})=>{
           
           {React.cloneElement(prop_main.chart, { pendCount: pendCount, actCount : actCount, compCount : compCount})}
         </div>
-        <div className={styles.mTop_box} style={{background:'#2a2a46'}} >
+        <div className={styles.mTop_box} style={{background:'#1a1a1a'}} >
           <div className={styles.box_top}>
             <i className="material-symbols-outlined">favorite</i>
             <p>Favorite</p>
@@ -164,7 +165,7 @@ const DashMain =({prop_dash,  prop_main})=>{
                                                     </>:
                                                     <>
                                                       <a style={{backgroundColor:'#2a2a46', color:'white'}}>{resource_counter[index]}</a>  
-                                                      <Link to={`get_quiz/${resource.id}`}>view</Link>
+                                                      <Link to={`get_quiz_scheme/${resource.id}`}>view</Link>
                                                     </>
                                                     }
                                                   </div>

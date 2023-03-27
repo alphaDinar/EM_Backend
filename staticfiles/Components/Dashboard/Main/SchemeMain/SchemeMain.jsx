@@ -8,7 +8,7 @@ const SchemeMain =({prop_dash})=>{
   const {slug} = useParams()
   
   const prop_main = {
-    'url' : `/scheme_api/${slug}`,
+    'url' : `scheme_api/${slug}`,
     'box_icon' : 'inventory_2',
     'chart' : <SchemeChart />,
     'header' : 'Schemes',

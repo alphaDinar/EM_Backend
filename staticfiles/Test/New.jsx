@@ -1,28 +1,24 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import baseAxios from '../Components/Auth/baseAxios';
 
-function New() {
-  const items = ['item 1', 'item 2', 'item 3'];
-
-  // Define a useRef hook
-  const myRef = useRef(null);
+function New(){
+  const [images, setImages] = useState([])
+  useEffect(()=>{
+    baseAxios.get('get_images')
+    .then(res => {
+      setImages(res.data)
+    })
+    .catch(error => console.log(error))
+  }, [setImages])
 
   return (
     <div>
-      {items.map((item, index) => (
-        <MyItem key={index} item={item} ref={myRef} />
+      {images.map((image,key)=>(
+        <img key={key} src={image.image} alt="" />
       ))}
     </div>
   );
 }
-
-// Component that will use the ref
-const MyItem = React.forwardRef((props, ref) => {
-  return (
-    <div ref={ref}>
-      <span>{props.item}</span>
-    </div>
-  );
-});
 
 export default New
 

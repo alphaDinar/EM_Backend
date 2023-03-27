@@ -1,1 +1,12 @@
-
+.form_modal{
+  /* position: absolute; */
+  background: rgba(0, 0, 0, 0.5);
+  min-height: 100vh;
+  width: 80%;
+  /* width:85vw; */
+  display: flex;
+  border: 1px solid gold;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}

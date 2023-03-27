@@ -2,47 +2,40 @@ import React, { useEffect, useRef,useState } from 'react';
 import styles from './home.module.css'
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
-
-export default function Home(){
-  const [home_bg, setHome_bg] = useState('')
-
-  useEffect(()=>{
-    axios.get('/asset_api')
-    .then(res=> handleImages(res.data))
-    .catch(error => console.log(error))
-  })
-  const handleImages =(data)=>{
-    setHome_bg(data.home_bg)
-  }
-  
-  const [logoutRes, setLogoutRes] = useState('')
-  useEffect(()=>{
-    axios.get('/auth_api')
-    .then(res => setLogoutRes(res.data))
-    .catch(error => console.log(error))
-  },[setLogoutRes])
-
+import home_bg from './stat.jpg'
+import axiosInstance from '../call';
+export default function Home(){  
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')  
-  const login_user =()=>{
-    axios.post('/auth_api',{
-      username: username,
-      password: password
-    })
-    .then(res => handleError(res))
-    .catch(error => console.log(error))
-  }
-  const [errorInput, setErrorInput] = useState('')
-  const [error, setError] = useState('')
+  
   const navigate = useNavigate()
-  const handleError =(res)=>{
-    console.log(res)
-    if(res['data']['mode'] === 'error'){
-      setError(1)
-      setErrorInput(res['data']['message'])
-    }else{
-      navigate('/course')
-    }
+
+  // const login_user =()=>{
+  //   axiosInstance.post('auth_api/get_token/',{
+  //     'username' : username,
+  //     'password' : password
+  //   })
+  //   .then(res => {
+  //     localStorage.setItem('access_token', res.data.access)
+  //     localStorage.setItem('refresh_token', res.data.refresh)
+  //     axiosInstance.defaults.headers['Authorization'] = 'JWT' + localStorage.getItem('access_token')
+  //     axiosInstance.post('auth_api/',{
+  //       'access_token' : localStorage.getItem('access_token'),
+  //       'refresh_token' : localStorage.getItem('refresh_token')
+  //     })
+  //     .then(res=>console.log(res.data))
+  //     navigate('/course')
+  //   })
+  //   .catch(error => console.log(error)) 
+  // }
+
+  const login_user =()=>{
+    axios.post('auth_api/',{
+      'username' : username,
+      'password' : password
+    })
+    .then(res => console.log(res))
+    .catch(error => console.log(error))
   }
 
   const [cover_styles, setCover_styles] = useState(styles.cover)
@@ -86,7 +79,7 @@ export default function Home(){
           <p>25$</p>
         </div>
       </section>
-      <section className={styles.right} style={{backgroundImage:`url(${home_bg})`}}>
+      <section className={styles.right} style={{backgroundImage:`url(https://res.cloudinary.com/dvnemzw0z/image/upload/v1679917217/EduManager/stat_rmymz8.jpg)`}}>
 
       </section>
     </section>

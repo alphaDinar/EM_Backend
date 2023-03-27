@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './sideBar.module.css'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import baseAxios from '../../Auth/baseAxios';
 
 const SideBar =({prop_dash})=>{
   const changeSide =()=>{
@@ -26,7 +27,7 @@ const SideBar =({prop_dash})=>{
 
   const navigate = useNavigate()
   const logout =()=>{
-    axios.post('/logout_api',{
+    baseAxios.post('logout_api/',{
       'test' : 'good'
     },{
       headers:{
@@ -51,7 +52,7 @@ const SideBar =({prop_dash})=>{
         <Link to={`/dashboard/${prop_dash.courseSlug}`}>
           <span className="material-symbols-outlined">inventory_2</span> <p className={menu_p_style}>Schemes</p>
         </Link>
-        <Link to={`/dashboard/${prop_dash.courseSlug}/quiz`}>
+        <Link to={`/dashboard/${prop_dash.courseSlug}/quiz_scheme`}>
           <span className="material-symbols-outlined">psychology_alt</span> <p className={menu_p_style}>QuizHub</p>
         </Link>
         <a><span className="material-symbols-outlined">stacked_bar_chart</span> <p className={menu_p_style}>Assesment</p></a>

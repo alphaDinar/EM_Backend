@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import baseAxios from '../Auth/baseAxios';
 import styles from './quiz.module.css'
 
 function SetQuiz() {
@@ -8,7 +9,7 @@ function SetQuiz() {
   const [token, setToken] = useState('')
 
   useEffect(()=>{
-    axios.get(`/set_quiz_api/${slug}`)
+    baseAxios.get(`set_quiz_api/${slug}`)
     .then(data => setToken(data.data.token))
     .catch(error => console.log(error))
   },[setToken])
@@ -44,7 +45,7 @@ function SetQuiz() {
 
   // axios
   const sendQuestions =()=>{
-    axios.post(`/set_quiz_api/${slug}`,{
+    baseAxios.post(`set_quiz_api/${slug}`,{
       'quiz' : slug,
       'quiz_box' : inputValues
     },{

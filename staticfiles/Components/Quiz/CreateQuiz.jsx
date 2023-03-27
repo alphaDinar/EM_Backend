@@ -1,62 +1,51 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import baseAxios from '../Auth/baseAxios';
 import styles from './quiz.module.css'
 
-const CreateQuiz =()=>{
-  const {slug} = useParams()
-  const [token, setToken] = useState('')
-  useEffect(()=>{
-    axios.get(`/create_quiz_api/${slug}`)
-    .then(data => setToken(data.data.token))
-    .catch(error => console.log(error))
-  }, [setToken])
-
+const CreateQuiz =({slug})=>{
+  // const {slug} = useParams()
   const [name, setName] = useState('')
-  const [qNum, setQNum] = useState('')
   const [duration, setDuration] = useState('')
   const [level, setLevel] = useState('')
 
-
   const navigate = useNavigate()
   const createQuiz =()=>{
-    axios.post(`/create_quiz_api/${slug}`,
+    baseAxios.post(`create_quiz_api/${slug}`,
     {
       'name' : name,
-      'q_num' : qNum,
       'duration' : duration,
       'level' : level,
-      'slug' : slug
-    },
-    {
-      headers:{
-        'X-CSRFToken' : token
+      'slug' : slug,
+      'token' : localStorage.getItem('access_token')
+    })
+    .then(res => {
+      if(res.data.info === 'exists'){
+        console.log('quiz exists')
+      }else{
+        navigate(`/set_quiz/${name}`)
       }
     })
-    .then(res => handleNav(res.status))
     .catch(error => console.log(error))
   }
 
-  const handleNav =(res)=>{
-    if(res === 200){
-      navigate(`/set_quiz/${name}`)
-    }
-  }
-
   return(
-    <section>
+    <>
       <form onSubmit={e=>e.preventDefault()} className={styles.quiz_form} >
-        <input type="text" value={name} onChange={e=>setName(e.target.value)} />
-        <input type="text" value={qNum} onChange={e=>setQNum(e.target.value)} />
-        <input type="text" value={duration} onChange={e=>setDuration(e.target.value)} />
+        <div>
+          New Quiz
+          <i className='material-symbols-outlined'>psychology_alt</i>
+        </div>
+        <input type="text" value={name} onChange={e=>setName(e.target.value)} placeholder='Quiz Name' />
+        <input type="text" value={duration} onChange={e=>setDuration(e.target.value)} placeholder='Quiz Duration [minutes]' />
         <select value={level} onChange={e=>setLevel(e.target.value)}>
           <option value="easy">Easy</option>
           <option value="normal">Normal</option>
           <option value="difficult">Difficult</option>
         </select>
-        <button onClick={createQuiz}>Onclick</button>
+        <button onClick={createQuiz}>Create Quiz</button>
       </form>
-    </section>
+    </>
   )
 }
 

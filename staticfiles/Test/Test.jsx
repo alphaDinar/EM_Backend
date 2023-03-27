@@ -1,28 +1,18 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import New from './New';
 
 function Test() {
-  const items = ['item 1', 'item 2', 'item 3'];
-
-  // Define a useRef hook
-  const myRef = useRef(null);
+  const [counter, setCounter] = useState(0)
+  setInterval(()=>{
+    setCounter(counter + 1)
+  },1000)
 
   return (
-    <div>
-      {items.map((item, index) => (
-        <MyItem key={index} item={item} ref={myRef} />
-      ))}
-    </div>
+      <>
+        <span>{counter}asca</span>
+      </>
   );
 }
-
-// Component that will use the ref
-const MyItem = React.forwardRef((props, ref) => {
-  return (
-    <div ref={ref}>
-      <span>{props.item}</span>
-    </div>
-  );
-});
 
 export default Test
 
