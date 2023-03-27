@@ -30,13 +30,14 @@ SECRET_KEY = 'django-insecure-slyoy3yu^rf1)_ff)5ual4@5pc#2+q40-_&9^0#oqt(j7x@n)u
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://edumanager.onrender.com','https://edumanager.onrender.com' , "http://localhost:5173", "https://edumanager-frontend.onrender.com", "http://edumanager-frontend.onrender.com"]
+# CSRF_TRUSTED_ORIGINS = []
 INTERNAL_IPS = ['127.0.0.1']
 AUTH_USER_MODEL = 'auth_api.User'
 # Application definition
 
 INSTALLED_APPS = [
     'jazzmin',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,7 +49,6 @@ INSTALLED_APPS = [
     'scheme_api',
     'quiz_api',
     'rest_framework',
-    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -87,17 +87,17 @@ WSGI_APPLICATION = 'EduManager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
 DATABASES = {
-    'default': dj_database_url.parse('postgres://edumanager_db_hueo_user:8iL3Z7r9HVE3Gowb01x09A33VeJ3vXEt@dpg-cgep6s82qv2dpva4erv0-a.oregon-postgres.render.com/edumanager_db_hueo')
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
+
+# DATABASES = {
+#     'default': dj_database_url.parse('postgres://edumanager_db_hueo_user:8iL3Z7r9HVE3Gowb01x09A33VeJ3vXEt@dpg-cgep6s82qv2dpva4erv0-a.oregon-postgres.render.com/edumanager_db_hueo')
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -141,7 +141,7 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-# STATIC_URL = 'static/'
+# STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # STATICFILES_DIRS = (os.path.join(BASE_DIR, 'Static'),)
 
@@ -162,7 +162,6 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
-
 }
 # import settings
 
@@ -207,12 +206,6 @@ SIMPLE_JWT = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "https://edumanager.onrender.com",
-    "http://edumanager.onrender.com",
-    "https://edumanager-frontend.onrender.com"
-    "http://edumanager-frontend.onrender.com"
-    "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "http://localhost:5173",
 ]
-
-CORS_ORIGIN_ALLOW_ALL = True
