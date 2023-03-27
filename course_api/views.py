@@ -25,12 +25,14 @@ class CourseAPI(generics.ListAPIView):
         courses = Teacher.objects.get(name=user).course.all()
         user = user.username
         return Response({'user':user ,'courses':courses.values()}) 
+ 
 
 class GetCourseAPI(generics.ListAPIView):
     permission_classes = [AllowAny]
     serializer_class = CourseSerializer
     def get(self,request, slug):
         token = get_token(request)
+        print(token)
         course = Course.objects.get(slug=slug).subject
         course_slug = Course.objects.get(slug=slug).slug
         return Response({'course': course, 'course_slug': course_slug, 'token': token})

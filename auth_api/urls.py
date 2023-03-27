@@ -8,16 +8,16 @@ from rest_framework_simplejwt.views import (
 urlpatterns = [
     path('', views.base),
     path('course', views.base),
-    path('dashboard/<str:slug>', views.base_slug),
-    path('dashboard/<str:slug>/quiz', views.base_slug),
-    path('dashboard/<str:slug>/quiz/get_quiz/<int:id>', views.base_slug_2),
-    path('dashboard/quiz/view', views.base_slug),
+    path('dashboard/<str:slug>/', views.base_slug),
+    path('dashboard/<str:slug>/quiz_scheme/', views.base_slug),
+    path('dashboard/<str:slug>/quiz_scheme/get_quiz_scheme/<int:id>/', views.base_slug_2),
+    path('dashboard/quiz/view/', views.base_slug),
 
-    path('start_quiz/<str:slug>', views.base_slug),
-    path('create_quiz/<str:slug>', views.base_slug),
-    path('set_quiz/<str:slug>', views.base_slug),
+    path('start_quiz/<str:slug>/', views.base_slug),
+    path('create_quiz/<str:slug>/', views.base_slug),
+    path('set_quiz/<str:slug>/', views.base_slug),
 
-    path('use_scheme/<str:slug>',views.base_slug),
+    path('use_scheme/<str:slug>/',views.base_slug),
     path('new_page', views.base),
 
     path('auth_api/', views.UserAPI.as_view()),

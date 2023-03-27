@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import User,LogBox
 from django.contrib.auth import login,authenticate
 from rest_framework.permissions import AllowAny
@@ -30,10 +30,10 @@ class UserAPI(APIView):
     serializer_class = UserSerializer
     queryset = User.objects.all()
     def post(self, request):
-        user = User.objects.get(username=request.data.get('username'))
-        login(request,user)
-        print(request.data.get('username'))
-        return Response({'test':'userapi'})
+        jwt_token = request.data.get('access_token')
+        refresh_token = request.data.get('refresh_token')
+        user = User.objects.get(id=get_user(jwt_token).id)
+        return Response({'user_id':user.id,'user':user.username})
 
 def get_user(jwt_token):
     payload = jwt.decode(jwt_token, settings.SECRET_KEY, algorithms=['HS256'])

@@ -49,7 +49,7 @@ class CreateQuizAPI(generics.CreateAPIView):
     permission_classes = [AllowAny]
     serializer_class = QuizSerializer
     def post(self,request,slug):
-        if Quiz.objects.get(name=request.data.get('name')):
+        if Quiz.objects.filter(name=request.data.get('name')).exists():
             res = 'exists'
         else:
             quiz = Quiz()
@@ -68,9 +68,17 @@ class CreateQuizAPI(generics.CreateAPIView):
 class SetQuizAPI(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = QuizSerializer
     def get(self,request,slug):
+        quiz_obj = Quiz.objects.get(slug=slug)
+        quiz = {
+            'name' : quiz_obj.name,
+            'duration' : quiz_obj.duration,
+            'level' : quiz_obj.level,
+            'scheme' : quiz_obj.topic.slug
+        }
         token = get_token(request)
-        return Response({'token':token})
+        return Response({'token':token, 'quiz':quiz})
     def post(self,request,slug):
+        print(request.data)
         quiz = Quiz.objects.get(name=request.data.get('quiz')) 
         quiz_box = request.data.get('quiz_box')
         cor_ans = []
@@ -80,18 +88,19 @@ class SetQuizAPI(generics.RetrieveUpdateDestroyAPIView):
             question.quiz = quiz
             question.save()
             for ans in box['answers']:
-                answer = Answer()
-                answer.content = ans
-                answer.question = question
-                if answer.content == box['cor_ans']:
-                    cor_ans.append(answer.content)
-                    answer.correct = True
-                answer.save()
+                if ans:
+                    answer = Answer()
+                    answer.content = ans
+                    answer.question = question
+                    if answer.content == box['cor_ans']:
+                        cor_ans.append(answer.content)
+                        answer.correct = True
+                    answer.save()
         # markingScheme = MarkingScheme()
         MarkingScheme.objects.create(quiz=quiz, answers=cor_ans).save()
         # markingScheme.quiz = quiz
     
-        print(cor_ans)
+        # print(cor_ans)
         return Response({'test' : 'pass'})
     queryset = Quiz.objects.all()
 

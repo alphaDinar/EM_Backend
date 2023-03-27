@@ -87,17 +87,17 @@ WSGI_APPLICATION = 'EduManager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-
 # DATABASES = {
-#     'default': dj_database_url.parse('postgres://edumanager_db_hueo_user:8iL3Z7r9HVE3Gowb01x09A33VeJ3vXEt@dpg-cgep6s82qv2dpva4erv0-a.oregon-postgres.render.com/edumanager_db_hueo')
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
 # }
+
+
+DATABASES = {
+    'default': dj_database_url.parse('postgres://edumanager_db_hueo_user:8iL3Z7r9HVE3Gowb01x09A33VeJ3vXEt@dpg-cgep6s82qv2dpva4erv0-a.oregon-postgres.render.com/edumanager_db_hueo')
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
