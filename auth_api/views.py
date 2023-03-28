@@ -14,10 +14,10 @@ def base(request):
     return render(request, 'dist/index.html')
 
 def base_slug(request,slug):
-    return render(request, 'base.html')
+    return render(request, 'dist/index.html')
 
 def base_slug_2(request,slug,id):
-    return render(request, 'base.html')
+    return render(request, 'dist/index.html')
 
 # class AuthAPI(APIView):
 #     permission_classes = [AllowAny]
