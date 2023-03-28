@@ -47,9 +47,10 @@ class UseSchemeAPI(generics.RetrieveAPIView):
         scheme = Scheme.objects.get(slug=slug).topic
         # scheme_info = 
         scheme_images = Scheme.objects.get(slug=slug).get_images()
+        scheme_passages = Scheme.objects.get(slug=slug).get_passage()
+        scheme_videos = Scheme.objects.get(slug=slug).get_videos()
         imageList = []
-        for image in scheme_images:  
-            print(image.image.url)   
+        for image in scheme_images:    
             image_con = {   
                 'id' : image.id,
                 'name' : image.name,
@@ -57,7 +58,24 @@ class UseSchemeAPI(generics.RetrieveAPIView):
                 'content' : image.content,   
             }
             imageList.append(image_con)
-        return Response({'scheme':scheme,'test':imageList}) 
+        passageList = []
+        for passage in scheme_passages:
+            passage_con = {
+                'id' : passage.id,
+                'name' : passage.name,
+                'content' : passage.content,
+            }
+            passageList.append(passage_con)
+        videoList = []
+        for video in scheme_videos:
+            video_con = {   
+                'id' : video.id,
+                'name' : video.name,
+                'video' : request.build_absolute_uri(video.video.url),
+                'content' : video.content,   
+            }
+            videoList.append(video_con)
+        return Response({'scheme':scheme,'imageList':imageList, 'passageList':passageList, 'videoList':videoList}) 
 
 
 class PostView(generics.ListAPIView):

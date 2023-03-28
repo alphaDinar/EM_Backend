@@ -4,7 +4,7 @@ from django.core.validators import FileExtensionValidator
 from django.utils.text import slugify
 from django.utils import timezone
 from course_api.models import Course
-# from cloudinary.models import CloudinaryField 
+from cloudinary.models import CloudinaryField 
 import datetime
 
 choice = (
@@ -33,8 +33,8 @@ class Scheme(models.Model):
         return self.image_set.all()
     def get_passage(self):
         return self.passage_set.all()
-    def get_document(self):
-        return self.document_set.all()
+    # def get_document(self):
+    #     return self.document_set.all()
     def get_videos(self):
         return self.video_set.all()
     def get_quizes(self):
@@ -42,8 +42,8 @@ class Scheme(models.Model):
 
 class Image(models.Model):
     name = models.CharField(max_length=300)
-    image = models.ImageField(default='default.jpg',upload_to='Scheme_images')
-    # image = CloudinaryField("Image" ,folder='TM/Scheme_image',Scheme_type="auto")
+    # image = models.ImageField(default='default.jpg',upload_to='Scheme_images')
+    image = CloudinaryField("Image" ,folder='TM/Scheme_image', resource_type='auto')
     content = models.TextField(max_length=10000, blank=True,null=True)
     # image_url = models.CharField(max_length=3000, blank=True, null=True)
     holder = models.ForeignKey(Scheme, on_delete=models.CASCADE)
@@ -57,17 +57,17 @@ class Passage(models.Model):
     def __str__(self):
         return self.name
 
-class Document(models.Model):
-    name = models.CharField(max_length=300)
-    doc = models.FileField(upload_to='TM/Scheme_docs', validators=[FileExtensionValidator(allowed_extensions=['pdf'])])
-    holder = models.ForeignKey(Scheme, on_delete=models.CASCADE)
-    def __str__(self):
-        return self.name
+# class Document(models.Model):
+#     name = models.CharField(max_length=300)
+#     doc = models.FileField(upload_to='TM/Scheme_docs', validators=[FileExtensionValidator(allowed_extensions=['pdf'])])
+#     holder = models.ForeignKey(Scheme, on_delete=models.CASCADE)
+#     def __str__(self):
+#         return self.name
 
 class Video(models.Model):
     name = models.CharField(max_length=300)
-    video = models.FileField(default='vid.jpg', upload_to='TM/Scheme_video', validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
-    # video = CloudinaryField("Video" ,folder='TM/Scheme_video',Scheme_type="auto")
+    # video = models.FileField(default='vid.jpg', upload_to='TM/Scheme_video', validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
+    video = CloudinaryField("Video" ,folder='TM/Scheme_video', resource_type='auto')
     content = models.TextField(max_length=10000, blank=True,null=True)
     holder = models.ForeignKey(Scheme, on_delete=models.CASCADE)
     def __str__(self):

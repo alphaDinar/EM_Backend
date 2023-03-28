@@ -1,1 +1,1 @@
-web: gunicorn EduManager.wsgi --log-file -
+web: gunicorn EM_Backend.wsgi --log-file -

@@ -32,6 +32,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary',
+    'cloudinary_storage',
     'auth_api',
     'course_api',
     'scheme_api',
@@ -137,6 +139,16 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME' : 'dvnemzw0z',
+    'API_KEY' : '482295267852992',
+    'API_SECRET' : '9X_kzT8VXq9a4_UY6qTr6jQ1X1o'
+}
+# CLOUDINARY_URL = 'cloudinary://482295267852992:9X_kzT8VXq9a4_UY6qTr6jQ1X1o@dvnemzw0z'
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
