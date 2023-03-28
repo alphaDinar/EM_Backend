@@ -11,7 +11,7 @@ import jwt
 from django.conf import settings
 
 def base(request):
-    return render(request, 'base.html')
+    return render(request, 'dist/index.html')
 
 def base_slug(request,slug):
     return render(request, 'base.html')
